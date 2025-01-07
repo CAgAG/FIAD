@@ -30,7 +30,7 @@ args = parser.parse_args()
 # Parameters
 hid_dim = [8, 16, 32, 64, 128]              # Embedding dimension: ℎ
 lr = [0.1, 0.05, 0.01]                      # Learning Rate
-injection_rate = [0.2, 0.4, 0.6, 0.8, 1.0]  # Proportion of injection: 𝑝. 
+injection_rate = [0.2, 0.4, 0.6, 0.8, 1.0]  # Proportion of injection: 𝑝
 alpha = [0.8, 0.5, 0.2, 0.3, 0.7]           # Proportion between attribute and structure: 𝛼
 beta = [0.8, 0.5, 0.2, 0.3, 0.7]            # Proportion between two losses: 𝛽
 dropout = [0, 0.1, 0.3]
@@ -65,8 +65,8 @@ if __name__ == '__main__':
                          epoch=epoch,
                          gpu=gpu,
                          alpha=comb_alpha,
-                         beta=comb_beta,
-                         p=comb_p,  # In the log folder, the injection rate is r.
+                         beta=comb_beta,  # In the log folder, the beta is `eta`.
+                         p=comb_p,        # In the log folder, the injection rate is `r`.
                          batch_size=batch_size,
                          num_neigh=num_neigh)
             data = load_data(dataset, dataset_dir)
