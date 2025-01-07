@@ -1,5 +1,5 @@
 # FIAD: Graph anomaly detection framework based feature injection 
-You can check the paper here [[pdf]](https://doi.org/10.1016/j.eswa.2024.125216).
+You can check the paper here [[pdf]](https://www.sciencedirect.com/science/article/abs/pii/S0957417424020839).
 
 # Environment Setup
 Before you start, install Pytorch and torch-geometric with appropriate CUDA support. Please refer to the PyTorch and torch-geometric websites for the specific guidelines.
