@@ -28,11 +28,12 @@ parser.add_argument("--model_name", type=str, default='FIAD', required=False)  #
 args = parser.parse_args()
 
 # Parameters
-hid_dim = [8, 16, 32, 64, 128]
+hid_dim = [8, 16, 32, 64, 128]              # Embedding dimension: ℎ
+lr = [0.1, 0.05, 0.01]                      # Learning Rate
+injection_rate = [0.2, 0.4, 0.6, 0.8, 1.0]  # Proportion of injection: 𝑝
+alpha = [0.8, 0.5, 0.2, 0.3, 0.7]           # Proportion between attribute and structure: 𝛼
+beta = [0.8, 0.5, 0.2, 0.3, 0.7]            # Proportion between two losses: 𝛽
 dropout = [0, 0.1, 0.3]
-lr = [0.1, 0.05, 0.01]
-alpha = [0.8, 0.5, 0.2, 0.3, 0.7]
-beta = [0.8, 0.5, 0.2, 0.3, 0.7]
 
 weight_decay = 0.01
 batch_size = 0
@@ -48,7 +49,7 @@ best_auc = -1
 save_dir = './models/{}/'.format(dataset)
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
-combinations = itertools.product(hid_dim, dropout, lr, alpha, beta)
+combinations = itertools.product(hid_dim, dropout, lr, alpha, beta, injection_rate)
 
 if __name__ == '__main__':
     auc, F1 = [], []
@@ -56,7 +57,7 @@ if __name__ == '__main__':
 
     for trial_i in range(20):
         for comb in combinations:
-            comb_hid_dim, comb_dropout, comb_lr, comb_alpha, comb_beta = comb
+            comb_hid_dim, comb_dropout, comb_lr, comb_alpha, comb_beta, comb_p = comb
             model = FIAD(hid_dim=comb_hid_dim,
                          weight_decay=weight_decay,
                          dropout=comb_dropout,
@@ -65,6 +66,7 @@ if __name__ == '__main__':
                          gpu=gpu,
                          alpha=comb_alpha,
                          beta=comb_beta,
+                         p=comb_p,
                          batch_size=batch_size,
                          num_neigh=num_neigh)
             data = load_data(dataset, dataset_dir)

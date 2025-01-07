@@ -33,7 +33,7 @@ pip install -r requirements.txt
 Parameters:
 
 - dataset: dataset name.
-- dataset_dir: The directory where the dataset is located.
+- dataset_dir: the directory where the dataset is located.
 - batch_size: batch size of graphs. 0 for total graph.
 
 Example:
@@ -43,10 +43,11 @@ python main.py --dataset weibo --dataset_dir ./data/ --batch_size 0
 
 You can further modify the parameters in the paper within the `main.py` file.
 ```python
-hid_dim = [...]
-lr = [...]
-alpha = [...]
-beta = [...]
+hid_dim = [...]         # Embedding dimension: ℎ
+lr = [...]              # Learning Rate
+injection_rate = [...]  # Proportion of injection: 𝑝
+alpha = [...]           # Proportion between attribute and structure: 𝛼
+beta = [...]            # Proportion between two losses: 𝛽
 ```
 > The `log` folder contains a portion of the training model records.
 

@@ -34,7 +34,8 @@ class FIAD(BaseDetector):
                  gpu=0,
                  batch_size=0,
                  num_neigh=-1,
-                 f=10):
+                 f=10,
+                 p=0.2):
         super(FIAD, self).__init__(contamination=contamination)
 
         # model param
@@ -45,6 +46,7 @@ class FIAD(BaseDetector):
         self.act = act
         self.alpha = alpha
         self.beta = beta
+        self.p = p
 
         # training param
         self.lr = lr
@@ -106,7 +108,7 @@ class FIAD(BaseDetector):
 
                 # Anomaly Injection (Feature)
                 h_ = h
-                h_aug = data_augmentation_by_channel(h, rate=1.0, scale_factor=self.f)
+                h_aug = data_augmentation_by_channel(h, rate=self.p, scale_factor=self.f)
 
                 # reconstruct
                 x_, s_ = self.model.reconstruct(h_, edge_index)
