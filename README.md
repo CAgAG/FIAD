@@ -4,22 +4,24 @@ You can check the paper here [[pdf]](https://www.sciencedirect.com/science/artic
 # Environment Setup
 Before you start, install Pytorch and torch-geometric with appropriate CUDA support. Please refer to the PyTorch and torch-geometric websites for the specific guidelines.
 
-Install dependencies:
+My environment is as follows:
+```bash
+torch==1.13.0
+torchaudio==0.13.0
+torchvision==0.14.0
+torch-cluster==1.6.1
+torch-scatter==2.1.1
+torch-sparse==0.6.17
+torch-spline-conv==1.2.2
+torch-geometric==2.3.1
+
+```
+
+Install other dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
-
-> The following versions should correspond to your environment.
-> ```bash
-> torch==1.13.0+cu116
-> torch-cluster==1.6.1+pt113cu116
-> torch-scatter==2.1.1+pt113cu116
-> torch-sparse==0.6.17+pt113cu116
-> torch-spline-conv==1.2.2+pt113cu116
-> torchaudio==0.13.0+cu116
-> torchvision==0.14.0+cu116
-> ```
 
 # Dataset
 
