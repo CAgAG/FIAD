@@ -10,11 +10,10 @@ import warnings
 
 import numpy as np
 from sklearn.metrics import f1_score
-from pygod.utils.utility import load_data
-from pygod.metrics import eval_roc_auc
 
 from model import FIAD
-from utils import PrintToFile, set_top_k_to_one
+from utils import PrintToFile, set_top_k_to_one, eval_roc_auc
+from utils import load_data
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset", type=str, default='weibo', required=False,
@@ -28,11 +27,11 @@ parser.add_argument("--model_name", type=str, default='FIAD', required=False)  #
 args = parser.parse_args()
 
 # Parameters
-hid_dim = [8, 16, 32, 64, 128]              # Embedding dimension: ℎ
-lr = [0.1, 0.05, 0.01]                      # Learning Rate
+hid_dim = [8, 16, 32, 64, 128]  # Embedding dimension: ℎ
+lr = [0.1, 0.05, 0.01]  # Learning Rate
 injection_rate = [0.2, 0.4, 0.6, 0.8, 1.0]  # Proportion of injection: 𝑝
-alpha = [0.8, 0.5, 0.2, 0.3, 0.7]           # Proportion between attribute and structure: 𝛼
-beta = [0.8, 0.5, 0.2, 0.3, 0.7]            # Proportion between two losses: 𝛽
+alpha = [0.8, 0.5, 0.2, 0.3, 0.7]  # Proportion between attribute and structure: 𝛼
+beta = [0.8, 0.5, 0.2, 0.3, 0.7]  # Proportion between two losses: 𝛽
 dropout = [0, 0.1, 0.3]
 
 weight_decay = 0.01
@@ -66,7 +65,7 @@ if __name__ == '__main__':
                          gpu=gpu,
                          alpha=comb_alpha,
                          beta=comb_beta,  # In the log folder, the beta is `eta`.
-                         p=comb_p,        # In the log folder, the injection rate is `r`.
+                         p=comb_p,  # In the log folder, the injection rate is `r`.
                          batch_size=batch_size,
                          num_neigh=num_neigh)
             data = load_data(dataset, dataset_dir)

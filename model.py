@@ -16,7 +16,7 @@ from tqdm import tqdm
 from base import BaseDetector
 from feat_aug import data_augmentation_by_channel
 from basic_model import FIAD_Base
-from pygod.utils import validate_device
+from utils import validate_device
 
 
 class FIAD(BaseDetector):
