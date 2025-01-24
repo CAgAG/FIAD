@@ -108,7 +108,7 @@ class FIAD(BaseDetector):
 
                 # Anomaly Injection (Feature)
                 h_ = h
-                h_aug = data_augmentation_by_channel(h, rate=self.p, scale_factor=self.f)
+                h_aug = data_augmentation_by_channel(h, rate=self.p, scale_factor=self.f, device=self.device)
 
                 # reconstruct
                 x_, s_ = self.model.reconstruct(h_, edge_index)
@@ -191,7 +191,7 @@ class FIAD(BaseDetector):
         # generate hyperparameter - node penalty
         reversed_attr = 1 - x
         etas = torch.where(reversed_attr == 1, reversed_attr,
-                           torch.full(x.shape, self.loss_eta).to(self.device))  # 相比 Dominant_19不同的地方
+                           torch.full(x.shape, self.loss_eta).to(self.device))
 
         # attribute reconstruction loss
         diff_attribute = torch.pow(x - x_, 2) * etas
