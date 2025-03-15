@@ -40,7 +40,10 @@ def eval_roc_auc(labels, pred):
 
 
 # ===================================================================
+# Author: Kay Liu <zliu234@uic.edu>
+# License: BSD 2 clause
 # https://github.com/pygod-team/pygod/blob/v0.3.1/pygod/utils/utility.py
+
 MAX_INT = np.iinfo(np.int32).max
 MIN_INT = -1 * MAX_INT
 
